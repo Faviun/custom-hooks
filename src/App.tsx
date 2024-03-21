@@ -1,3 +1,4 @@
+import InpTaskItem from "./components/InpTaskItem";
 import useForm from "./hooks/useForm";
 
 function App() {
@@ -15,115 +16,30 @@ function App() {
         handleFormSubmit,
     } = useForm("");
 
+    const mas = [
+        { val: id, setVal: setId, n: "id" },
+        { val: title, setVal: setTitle, n: "title" },
+        { val: description, setVal: setDescription, n: "description" },
+        { val: status, setVal: setStatus, n: "status" },
+        { val: createdAt, setVal: setCreatedAt, n: "createdAt" },
+    ];
+
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-12">
             <form
                 onSubmit={handleFormSubmit}
                 className="space-y-6"
                 action="#"
                 method="POST"
             >
-                <div>
-                    <label
-                        htmlFor="id"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                        Id
-                    </label>
-                    <div className="mt-2">
-                        <input
-                            value={id}
-                            onChange={(e) => setId(e.target.value)}
-                            id="id"
-                            name="id"
-                            type="text"
-                            required
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <label
-                        htmlFor="title"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                        Title
-                    </label>
-                    <div className="mt-2">
-                        <input
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            id="title"
-                            name="title"
-                            type="text"
-                            required
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <label
-                        htmlFor="description"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                        Description
-                    </label>
-                    <div className="mt-2">
-                        <input
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            id="description"
-                            name="description"
-                            type="text"
-                            required
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <label
-                        htmlFor="status"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                        Status
-                    </label>
-                    <div className="mt-2">
-                        <input
-                            value={status}
-                            onChange={(e) => setStatus(e.target.value)}
-                            id="status"
-                            name="status"
-                            type="text"
-                            required
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <div className="flex items-center justify-between">
-                        <label
-                            htmlFor="createdAt"
-                            className="block text-sm font-medium leading-6 text-gray-900"
-                        >
-                            Created At
-                        </label>
-                    </div>
-                    <div className="mt-2">
-                        <input
-                            value={createdAt}
-                            onChange={(e) => setCreatedAt(e.target.value)}
-                            id="createdAt"
-                            name="createdAt"
-                            type="text"
-                            required
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        />
-                    </div>
-                </div>
+                {mas.map((e) => (
+                    <InpTaskItem
+                        key={e.n}
+                        item={e.val}
+                        setItem={e.setVal}
+                        itemlabel={e.n}
+                    />
+                ))}
 
                 <div>
                     <button
